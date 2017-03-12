@@ -105,11 +105,53 @@ class ViewController: UIViewController {
         
         group.notify(queue: DispatchQueue.main) {
             hud.hide(animated: true)
-            let allText = results.joined(separator: ",")
-            let alertController = UIAlertController(title: "Text Readed", message: allText, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self.getResponse(requestQuestions: results)
         }
+    }
+    
+    func getResponse(requestQuestions:[String]) {
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = "Loading..."
+        hud.mode = .indeterminate
+        
+        var queries = "{\"queries\":["
+        for (index,query) in requestQuestions.enumerated() {
+            queries.append("\"\(query.replacingOccurrences(of: "\n", with: ""))\"")
+            if index < requestQuestions.count && requestQuestions.count > 1 {
+                queries.append(",")
+            }
+        }
+        queries.append("]}")
+        
+        if let query = queries.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            let urlLiteral:String = "http://legendarycrown.com/hwk?key=VwNgus5ctVPTMXUBwv3fFeUG&request=\(query)"
+            if let url = URL(string: urlLiteral) {
+                let request = URLRequest(url: url)
+                let sessionTask = URLSession.shared.dataTask(with: request, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+                    DispatchQueue.main.async {
+                        hud.hide(animated: true)
+                        if error != nil {
+                            let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                        
+                            if let data = data, let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments), let responseObject = jsonObject as? [String:AnyObject], let answers = responseObject["answers"] as? [[String:String]] {
+                                self.performSegue(withIdentifier: "segue_scanner_result", sender: answers)
+                            } else {
+                                let alertController = UIAlertController(title: "Error", message: "Ha ocurrido un error", preferredStyle: .alert)
+                                alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                    
+                })
+                sessionTask.resume()
+            }
+        }
+
     }
     
     //MARK: Move to extension
@@ -209,19 +251,16 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue_ads" {
-            let adsViewController = segue.destination as! AdsViewController
-            adsViewController.delegate = self
+        
+        if segue.identifier == "segue_scanner_result" {
+            let resultViewController = segue.destination as! ResultViewController
+            var result:[String] = []
+            for answer in (sender as? [[String:String]])! {
+                result.append(answer["0"]!)
+            }
+            resultViewController.results = result
         }
-    }
-    
-}
-
-extension ViewController : AdsProtocol {
-    
-    func finishTime() {
-        self.dismiss(animated: true, completion:nil)
-        self.processImages()
+        
     }
     
 }

@@ -10,6 +10,7 @@
 		2A403338CD9EE7999A4267A0 /* Pods_HomeWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FB9DE74AFBCAC7EF55E74A /* Pods_HomeWork.framework */; };
 		E10873B31E4AA60700E5D285 /* dummy_ads.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E10873B21E4AA60700E5D285 /* dummy_ads.jpg */; };
 		E10873B81E4ACDF900E5D285 /* AdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10873B71E4ACDF900E5D285 /* AdsViewController.swift */; };
+		E11D90CD1E74E1930009C1CD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11D90CC1E74E1930009C1CD /* ResultViewController.swift */; };
 		E15B43E51E42C89C006BA433 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E15B43E41E42C89C006BA433 /* libstdc++.6.0.9.tbd */; };
 		E15B43E71E42C8A4006BA433 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E15B43E61E42C8A4006BA433 /* CoreImage.framework */; };
 		E15B43E91E42CA67006BA433 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = E15B43E81E42CA67006BA433 /* tessdata */; };
@@ -26,6 +27,7 @@
 		B3FB9DE74AFBCAC7EF55E74A /* Pods_HomeWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10873B21E4AA60700E5D285 /* dummy_ads.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dummy_ads.jpg; sourceTree = "<group>"; };
 		E10873B71E4ACDF900E5D285 /* AdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsViewController.swift; sourceTree = "<group>"; };
+		E11D90CC1E74E1930009C1CD /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		E15B43E41E42C89C006BA433 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		E15B43E61E42C8A4006BA433 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		E15B43E81E42CA67006BA433 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				E1F946CE1E41991D00BA452A /* ViewController.swift */,
 				E10873B71E4ACDF900E5D285 /* AdsViewController.swift */,
+				E11D90CC1E74E1930009C1CD /* ResultViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				E1F946CF1E41991D00BA452A /* ViewController.swift in Sources */,
 				E10873B81E4ACDF900E5D285 /* AdsViewController.swift in Sources */,
 				E1F946CD1E41991D00BA452A /* AppDelegate.swift in Sources */,
+				E11D90CD1E74E1930009C1CD /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
